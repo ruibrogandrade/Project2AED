@@ -1,46 +1,33 @@
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <string>
+#include <list>
+#include "GraphCreate.h"
 
 using namespace std;
 
-string readLines() {
-    ifstream file("dataset/lines.csv");
-    string line;
-    string linecode;
-    string line1;
-    int i = 0;
-    while(getline(file,line)){
-        cout << endl;
-        i++;
-        if (i == 1) continue;
-        int pos = line.find_first_of(',');
-        string linecode = line.substr(0,pos);
 
-        for(int dir = 0; dir <= 1; dir++) {
-            ifstream file1("dataset/line_" + linecode + "_" + to_string(dir) + ".csv");
-            if(!file1.is_open()) continue;
-            while (getline(file1, line1)) {
-                cout << line1 << endl;
-            }
-        }
-    }
 
-}
+void createGraph() {
 
-string readStops() {
-    ifstream file("dataset/stops.csv");
-    string line;
-
-    while(getline(file,line,'\n')){
-        cout << line << ";" << endl;
-    }
-
+    Graph test(10,false);
+    test.addEdge(1,2,3);
+    map<string,int>
 }
 
 int main() {
-    //readStops();
-    readLines();
+    GraphCreate CreateGraphs;
+    list<string> result = CreateGraphs.readLines();
+    for(int i = 0; i < result.size())
 
+    //Ler o nome de um ficheiro -> criar um grapho
+    // -> fazer addEdges no grafo até ter todas as stops
+    // -> meter o grapho no vetor -> ir para a proxima linha
+    // -> repeat;
+
+
+    list<Graph> lista;
     return 0;
 }
 
