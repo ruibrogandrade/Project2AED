@@ -15,7 +15,7 @@ using namespace std;
 class Graph {
     struct Edge {
         int dest;   // Destination node
-        int weight; // An integer weight
+        double weight; // An integer weight
     };
 
     struct Node {
@@ -31,7 +31,7 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int weight = 1);
+    void addEdge(int src, int dest, double weight);
 
 };
 
