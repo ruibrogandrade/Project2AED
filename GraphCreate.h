@@ -17,12 +17,22 @@ public:
     list<string> readLines();
     list<string> readStopsinLine(list<string> result, int i);
     map<string, int> StopsToMap();
-    Graph CreateGraph(list<string> lines, map<string, int> StopsToInt, list<double> StopsLat, list<double> StopsLong);
+    Graph CreateGraph(list<string> lines, list<string> LinesCode, map<string, int> StopsToInt, list<double> StopsLat, list<double> StopsLong);
 
     list<double> StopsLat();
     list<double> StopsLong();
 
     double haversine(list<double> StopsLong, list<double> StopsLat, int src, int dest);
+
+    list<string> StopsCode();
+
+    list<string> StopsName();
+
+    list<string> LinesName();
+
+    list<string> LinesCode();
+
+    list<string> StopsZone();
 };
 
 

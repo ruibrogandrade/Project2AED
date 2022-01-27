@@ -2,31 +2,84 @@
 // Pedro Ribeiro (DCC/FCUP) [09/01/2022]
 
 #include "graph.h"
+#include <queue>
 
 // Constructor: nr nodes and direction (default: undirected)
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, double weight) {
+void Graph::addEdge(int src, int dest, string lineCode, double weight) {
     if (src<1 || src>n || dest<1 || dest>n) return;
-    nodes[src].adj.push_back({dest, weight});
+    nodes[src].adj.push_back({dest, weight, lineCode});
     if (!hasDir) nodes[dest].adj.push_back({src, weight});
 }
 
+/*
+int Graph::bfs(int v1, int v2) {
+    for (int v=1; v<=n; v++) nodes[v].visited = false;
+    queue<int> q; // queue of unvisited nodes
+    q.push(v1);
+    int dist = 0;
+    nodes[v1]. visited = true;
+    int i = 0;
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front(); q.pop();
+        cout << u << " "; // show node order
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (w == v2) return dist;
+            if (!nodes[w].visited) {
+                q.push(w);
+                nodes[w].visited = true;
+            }
+        }
+        dist++;
+    }
+    return -1;
+}
+*/
 
-/*// 1) Algoritmo de Dijkstra e caminhos mais curtos
-// ----------------------------------------------------------
-​
-// ..............................
+int Graph::distance(int a, int b) {
+    if(a == b) return 0;
+    for(int i = 1; i <= n; i++)
+        nodes[i].distance = -1;
+    bfsDist(a);
+    return nodes[b].distance;
+}
+
+void Graph::bfsDist(int v){
+    nodes[v].distance = 0; //distance from v to itself
+    for (int v=1; v<=n; v++) nodes[v].visited = false;
+    queue<int> q; // queue of unvisited nodes
+    q.push(v);
+    nodes[v].visited = true;
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front(); q.pop();
+        //cout << u << " "; // show node order
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited) {
+                q.push(w);
+                nodes[w].visited = true;
+                nodes[w].distance = nodes[u].distance + 1;
+            }
+        }
+    }
+}
+
+
+#define INF (INT_MAX/2)
+
 // a) Distância entre dois nós
-//
+
+/*
 int Graph::dijkstra_distance(int a, int b) {
     dijkstra(a);
     if (nodes[b].dist == INF) return -1;
     return nodes[b].dist;
 }
-​
+
 // ..............................
 // b) Caminho mais curto entre dois nós
 //
@@ -42,6 +95,8 @@ list<int> Graph::dijkstra_path(int a, int b) {
     }
     return path;
 }
+*/
+/*
 ​
 // Dijkstra in O(|E| log |V|) using only the MinHeap that was given to you
 void Graph::dijkstra(int s) {
@@ -70,7 +125,7 @@ void Graph::dijkstra(int s) {
     }
 }
 ​
-/*
+
 // Another version of Dijkstra in O(|E| log |V|) using only STL and sets
 void Graph::dijkstra(int s) {
     set<pair<int, int>> q;

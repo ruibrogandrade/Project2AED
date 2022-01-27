@@ -9,9 +9,8 @@
 list<string> GraphCreate::readLines() {
     list<string> lines;
     ifstream file("dataset/lines.csv");
-    string line;
     string linecode;
-    string line1;
+    string line;
     int i = 0;
     while(getline(file,line)){
         cout << endl;
@@ -43,16 +42,15 @@ list<string> GraphCreate::readStopsinLine(list<string> lines, int i) {
     return stops;
 }
 
-Graph GraphCreate::CreateGraph(list<string> lines,map<string,int> StopsToInt,list<double> StopsLat, list<double> StopsLong) {
+Graph GraphCreate::CreateGraph(list<string> lines, list<string> LinesCode, map<string,int> StopsToInt,list<double> StopsLat, list<double> StopsLong) {
     int src;
     int dest;
     double weight;
     std::string line;
     Graph graph(2488, true);
-    for (int i = 0; i < lines.size(); i++) {
+    for (int i = 0; i < LinesCode.size(); i++) {
         list<string> stops = readStopsinLine(lines, i);
         for (auto it = stops.begin(); it != stops.end(); it++) {
-
             if (it == stops.end()) break;
             //if (lit == stops.end()) break;
             auto et = StopsToInt.find((*it));
@@ -66,7 +64,12 @@ Graph GraphCreate::CreateGraph(list<string> lines,map<string,int> StopsToInt,lis
                 dest = ot->second;
             }
             weight = haversine(StopsLong,StopsLat,src,dest);
-            graph.addEdge(src, dest, weight);
+
+            auto frontLines = LinesCode.begin();
+            advance(frontLines,i);
+            string lineCode = *frontLines;
+            it--;
+            graph.addEdge(src,dest,lineCode,weight);
         }
     }
     return graph;
@@ -127,6 +130,89 @@ list<double> GraphCreate::StopsLong() {
         j++;
     }
     return StopsLong;
+}
+
+
+list<string> GraphCreate::StopsCode() {
+    ifstream file("dataset/stops.csv");
+    string line;
+    list<string> stopsCode;
+    int i = 0;
+    while(getline(file,line)){
+        i++;
+        if (i == 1)  continue;
+        int pos = line.find_first_of(',');
+        stopsCode.push_back(line.substr(0,pos));
+    }
+    return stopsCode;
+}
+
+list<string> GraphCreate::StopsName() {
+    ifstream file("dataset/stops.csv");
+    string part;
+    list<string> stopsName;
+    int i = 0;
+    int j = 0;
+    while(getline(file,part,',')){
+        i++;
+        j++;
+        if (i == 1 || i == 2 || i == 3 || i == 4 ||i == 5)  continue;
+        if (j == 6 || j == 4) {
+            j = 0;
+            stopsName.push_back(part);
+        }
+    }
+    return stopsName;
+}
+
+list<string> GraphCreate::StopsZone() {
+    ifstream file("dataset/stops.csv");
+    string part;
+    list<string> stopsZone;
+    int i = 0;
+    int j = 0;
+    while(getline(file,part,',')){
+        i++;
+        j++;
+        if (i == 1 || i == 2 || i == 3 || i == 4 ||i == 5 ||i == 6)  continue;
+        if (j == 7 || j == 4) {
+            j = 0;
+            stopsZone.push_back(part);
+        }
+    }
+    return stopsZone;
+}
+
+list<string> GraphCreate::LinesName() {
+    ifstream file("dataset/lines.csv");
+    string line;
+    string line1;
+    list<string> linesName;
+    int i = 0;
+    while(getline(file,line)){
+        i++;
+        if (i == 1) continue;
+        int pos = line.find_first_of(',');
+        string name = line.substr(pos+1);
+        linesName.push_back(name);
+    }
+    return linesName;
+}
+
+list<string> GraphCreate::LinesCode() {
+    string line;
+    ifstream file("dataset/lines.csv");
+    int i = 0;
+    list<string> LinesCode;
+    while(getline(file,line)) {
+        cout << endl;
+        i++;
+        if (i == 1) continue;
+        int pos = line.find_first_of(',');
+        string linecode = line.substr(0, pos);
+        LinesCode.push_back(linecode);
+    }
+    return LinesCode;
 }
 
 
