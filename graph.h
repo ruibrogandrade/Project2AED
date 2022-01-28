@@ -21,7 +21,7 @@ class Graph {
 
     struct Node {
         list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
-        int distance;
+        double distance;
         int pred;
         bool visited;
         string name;
@@ -31,8 +31,6 @@ class Graph {
     bool hasDir;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
 
-    void dijkstra(int s);
-
 public:
     // Constructor: nr nodes and direction (default: undirected)
     Graph(int nodes, bool dir);
@@ -40,7 +38,7 @@ public:
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, string lineCode, double weight);
 
-    int dijkstra_distance(int a, int b);
+    double dijkstra_distance(int a, int b);
     list<int> dijkstra_path(int a, int b);
 
     int bfs(int v1, int v2);
@@ -48,6 +46,10 @@ public:
     void bfsDist(int v);
 
     int distance(int a, int b);
+
+    void dijkstra(int s);
+
+    list<int> dijkstra_path_walking(int a, int b, double d);
 };
 
 #endif

@@ -27,6 +27,7 @@ list<string> GraphCreate::readLines() {
     return lines;
 }
 
+
 list<string> GraphCreate::readStopsinLine(list<string> lines, int i) {
     auto front = lines.begin();
     advance(front,i);
@@ -47,7 +48,7 @@ Graph GraphCreate::CreateGraph(list<string> lines, list<string> LinesCode, map<s
     int dest;
     double weight;
     std::string line;
-    Graph graph(2488, true);
+    Graph graph(2486, true);
     for (int i = 0; i < LinesCode.size(); i++) {
         list<string> stops = readStopsinLine(lines, i);
         for (auto it = stops.begin(); it != stops.end(); it++) {
@@ -189,7 +190,7 @@ list<string> GraphCreate::LinesName() {
     string line1;
     list<string> linesName;
     int i = 0;
-    while(getline(file,line)){
+    while(getline(file,line)) {
         i++;
         if (i == 1) continue;
         int pos = line.find_first_of(',');
@@ -233,6 +234,22 @@ double GraphCreate::haversine(list<double> StopsLong, list<double> StopsLat, int
     advance(frontLong2,src);
     double lon2 = *frontLong2;
 
+    double dLat = (lat2 - lat1) * M_PI / 180.0;
+    double dLon = (lon2 - lon1) * M_PI / 180.0;
+
+    // convert to radians
+    lat1 = (lat1) * M_PI / 180.0;
+    lat2 = (lat2) * M_PI / 180.0;
+
+    // apply formula
+    double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
+    double rad = 6371;
+    double c = 2 * asin(sqrt(a));
+    return rad * c;
+}
+
+
+double GraphCreate::haversine2(double lat1, double lon1, double lat2, double lon2) {
 
     double dLat = (lat2 - lat1) * M_PI / 180.0;
     double dLon = (lon2 - lon1) * M_PI / 180.0;
@@ -241,9 +258,38 @@ double GraphCreate::haversine(list<double> StopsLong, list<double> StopsLat, int
     lat1 = (lat1) * M_PI / 180.0;
     lat2 = (lat2) * M_PI / 180.0;
 
-    // apply formulae
+    // apply formula
     double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
     double rad = 6371;
     double c = 2 * asin(sqrt(a));
     return rad * c;
+}
+
+
+string GraphCreate::NodeToStopCode(int nodeNumber, list<string> StopsCode) {
+    auto frontStopsCode = StopsCode.begin();
+    advance(frontStopsCode,nodeNumber);
+    string StopCode = *frontStopsCode;
+    return StopCode;
+}
+
+
+list<string> GraphCreate::CoordinatesNearDistance(double distance,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
+    list<string> result;
+    int i = 0;
+    for(auto it = Lats.begin(); it !=  Lats.end(); it++) {
+        auto et = Longis.begin();
+
+        double dist = abs(haversine2(*it,*et,lat,longi));
+        if (dist < distance) result.push_back(NodeToStopCode(i,StopsName));
+        i++;
+        et++;
+    }
+    return result;
+}
+
+void GraphCreate::printList(list<string> list) {
+    for (auto it = list.begin(); it != list.end(); it++) {
+        cout << (*it) << endl;
+    }
 }

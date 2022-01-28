@@ -33,6 +33,18 @@ public:
     list<string> LinesCode();
 
     list<string> StopsZone();
+
+    string NodeToStopCode(int nodeNumber, list<string> StopsCode);
+
+    list<string> CoordinatesNearDistance(double distance, double lat, double longi);
+
+    double haversine2(double lat1, double lon1, double lat2, double lon2);
+
+    list<string>
+    CoordinatesNearDistance(double distance, double lat, double longi, list<double> Lats, list<double> Longis,
+                            list<string> StopsName);
+
+    void printList(list<string> list);
 };
 
 
