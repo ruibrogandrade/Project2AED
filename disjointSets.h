@@ -1,5 +1,4 @@
-// AED 2021/2022 - Aula Pratica 10
-// Pedro Ribeiro (DCC/FCUP) [09/01/2022]
+// Rui Andrade (FEUP)
 
 #ifndef PROJETO2AED_DISJOINTSETS_H
 #define PROJETO2AED_DISJOINTSETS_H

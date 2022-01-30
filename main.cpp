@@ -12,6 +12,20 @@ void printList(list<string> list) {
     }
 }
 
+
+/**
+ * \brief Apresenta caminhos pedidos
+ * @param StopsName nome
+ * @param StopsCode codigo
+ * @param lines linha
+ * @param LinesCode codigo da linha
+ * @param StopsToInt index dos stops
+ * @param StopsLat latitude
+ * @param StopsLong longitude
+ * @param StopsZone zonas
+ */
+
+
 void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string> lines,
                     list<string> LinesCode, map<string,int> StopsToInt, list<double> StopsLat, list<double> StopsLong, list<string> StopsZone) {
 
@@ -108,6 +122,15 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
     }
 }
 
+
+/**
+ * \brief menu para apresentar stops
+ * @param StopsLat latitude
+ * @param StopsLong longitude
+ * @param StopsName nome
+ * @param StopsCode codigo
+ */
+
 void StopsClosestTo(list<double> StopsLat, list<double> StopsLong, list<string> StopsName, list<string> StopsCode) {
     GraphCreate CreateGraphs;
     int parameter;
@@ -172,6 +195,10 @@ void StopsClosestTo(list<double> StopsLat, list<double> StopsLong, list<string> 
     }
 }
 
+/**
+ *\brief chama outras funções
+ */
+
 void menu() {
 
     GraphCreate CreateGraphs;
@@ -209,14 +236,7 @@ void menu() {
 }
 
 
-
-
-
 int main() {
-
-    GraphCreate CreateGraphs;
-
     menu();
-
     return 0;
 }

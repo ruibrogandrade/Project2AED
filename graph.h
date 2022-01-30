@@ -1,5 +1,4 @@
-// AED 2021/2022 - Aula Pratica 10
-// Pedro Ribeiro (DCC/FCUP) [09/01/2022]
+// Rui Andrade (FEUP)
 
 #ifndef PROJETO2AED_GRAPH_H
 #define PROJETO2AED_GRAPH_H
@@ -24,7 +23,6 @@ class Graph {
         double distance;
         int pred;
         bool visited;
-        string name;
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)

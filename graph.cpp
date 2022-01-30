@@ -1,5 +1,4 @@
-// AED 2021/2022 - Aula Pratica 10
-// Pedro Ribeiro (DCC/FCUP) [09/01/2022]
+// Rui Andrade (FEUP)
 
 #include "graph.h"
 #include <queue>
@@ -24,6 +23,13 @@ int Graph::distance(int a, int b) {
     cout << "Distance: ";
     return nodes[b].distance;
 }
+
+/**
+ * Algoritmo de BFS
+ * Time Complexity = O(V + E)
+ * @param v - primeiro node
+ */
+
 
 void Graph::bfsDist(int v){
     nodes[v].distance = 0; //distance from v to itself
@@ -55,6 +61,16 @@ double Graph::dijkstra_distance(int a, int b, list<string> StopZones) {
     return nodes[b].distance;
 }
 
+/**
+ * Algoritmo de disjkstra para caminhos
+ * @param a
+ * @param b
+ * @param type
+ * @param StopZones
+ * @return caminho
+ */
+
+
 // Caminho mais curto entre dois nós
 list<int> Graph::dijkstra_path(int a, int b, int type,list<string> StopZones) {
     dijkstra(a,type,StopZones);
@@ -68,6 +84,7 @@ list<int> Graph::dijkstra_path(int a, int b, int type,list<string> StopZones) {
     }
     return path;
 }
+
 
 list<int> Graph::dijkstra_path_walking(int a, int b, double d, list<string> StopZones) {
     dijkstra(a,0,StopZones);
@@ -87,7 +104,15 @@ list<int> Graph::dijkstra_path_walking(int a, int b, double d, list<string> Stop
     return path;
 }
 
-//O(|E| log |V|)
+/**
+ * Algoritmo de dijsktra
+ * Complexity = O(|E| log |V|)
+ * @param s
+ * @param type
+ * @param StopZones
+ */
+
+
 void Graph::dijkstra(int s,int type,list<string> StopZones) {
     MinHeap<int, int> q(n, -1);
     for (int v=1; v<=n; v++) {
@@ -124,6 +149,13 @@ void Graph::dijkstra(int s,int type,list<string> StopZones) {
     }
 }
 
+/**
+ * checkPreviousLineCode
+ * @param u node :D
+ * @param s node
+ * @return codigo de linha
+ */
+
 string Graph::checkPreviousLineCode(int u, int s) {
     int v;
     if (u != s) {
@@ -138,6 +170,14 @@ string Graph::checkPreviousLineCode(int u, int s) {
         }
     }
 }
+
+/**
+ * checkZoneChange
+ * @param u node
+ * @param v node
+ * @param StopZones zonas
+ * @return booleano se stops tiverem zonas diferentes
+ */
 
 bool Graph::checkZoneChange(int u, int v, list<string> StopZones) {
     auto frontStopZones = StopZones.begin();

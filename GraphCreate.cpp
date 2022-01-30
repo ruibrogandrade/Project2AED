@@ -6,6 +6,10 @@
 #include <math.h>
 #include <algorithm>
 
+/**
+ * Leitura de linhas
+ * @return lista de linhas
+ */
 
 list<string> GraphCreate::readLines() {
     list<string> lines;
@@ -28,6 +32,12 @@ list<string> GraphCreate::readLines() {
     return lines;
 }
 
+/**
+ * Leitura de stops correspondentes a linhas
+ * @param lines
+ * @param i
+ * @return lista de stops
+ */
 
 list<string> GraphCreate::readStopsinLine(list<string> lines, int i) {
     auto front = lines.begin();
@@ -44,6 +54,19 @@ list<string> GraphCreate::readStopsinLine(list<string> lines, int i) {
     return stops;
 }
 
+
+/**
+ * Construtor
+ * Time Complexity = N^2
+ * @param lines
+ * @param LinesCode
+ * @param StopsToInt
+ * @param StopsLat
+ * @param StopsLong
+ * @return grafo
+ */
+
+//
 Graph GraphCreate::CreateGraph(list<string> lines, list<string> LinesCode, map<string,int> StopsToInt,list<double> StopsLat, list<double> StopsLong) {
     int src;
     int dest;
@@ -77,6 +100,12 @@ Graph GraphCreate::CreateGraph(list<string> lines, list<string> LinesCode, map<s
     return graph;
 }
 
+/**
+ * StopsToMap
+ * @return mapa com stops e index
+ */
+
+
 map<string,int> GraphCreate::StopsToMap() {
     ifstream file("dataset/stops.csv");
     string line;
@@ -94,6 +123,12 @@ map<string,int> GraphCreate::StopsToMap() {
     }
     return StopsToInt;
 }
+
+/**
+ * StopsLat
+ * @return lista de latitudes
+ */
+
 
 list<double> GraphCreate::StopsLat() {
     ifstream file("dataset/stops.csv");
@@ -115,6 +150,11 @@ list<double> GraphCreate::StopsLat() {
     return StopsLat;
 }
 
+/**
+ * StopsLong
+ * @return lista de longitudes
+ */
+
 list<double> GraphCreate::StopsLong() {
     ifstream file("dataset/stops.csv");
     string line;
@@ -133,6 +173,11 @@ list<double> GraphCreate::StopsLong() {
     return StopsLong;
 }
 
+/**
+ * StopsCode
+ * @return lista de codigos de stops
+ */
+
 
 list<string> GraphCreate::StopsCode() {
     ifstream file("dataset/stops.csv");
@@ -147,6 +192,11 @@ list<string> GraphCreate::StopsCode() {
     }
     return stopsCode;
 }
+
+/**
+ *StopsName
+ * @return lista de nome de stops
+ */
 
 list<string> GraphCreate::StopsName() {
     ifstream file("dataset/stops.csv");
@@ -166,6 +216,11 @@ list<string> GraphCreate::StopsName() {
     return stopsName;
 }
 
+/**
+ *StopsZone
+ * @return zonas
+ */
+
 list<string> GraphCreate::StopsZone() {
     ifstream file("dataset/stops.csv");
     string part;
@@ -184,6 +239,12 @@ list<string> GraphCreate::StopsZone() {
     return stopsZone;
 }
 
+
+/**
+ * LinesName
+ * @return lista de nomes das linhas
+ */
+
 list<string> GraphCreate::LinesName() {
     ifstream file("dataset/lines.csv");
     string line;
@@ -199,6 +260,11 @@ list<string> GraphCreate::LinesName() {
     }
     return linesName;
 }
+
+/**
+ * LinesCode
+ * @return codigos de linhas
+ */
 
 list<string> GraphCreate::LinesCode() {
     string line;
@@ -216,6 +282,16 @@ list<string> GraphCreate::LinesCode() {
     return LinesCode;
 }
 
+/***
+ * haversine
+ * Time Complexity = O(N)
+ * \brief Dscobre a latitude e a longitude de uma stop e compara a distancia entre as 2 stops
+ * @param StopsLong
+ * @param StopsLat
+ * @param src
+ * @param dest
+ * @return distancia
+ */
 
 double GraphCreate::haversine(list<double> StopsLong, list<double> StopsLat, int src, int dest) {
     auto frontLat1 = StopsLat.begin();
@@ -248,6 +324,15 @@ double GraphCreate::haversine(list<double> StopsLong, list<double> StopsLat, int
     return rad * c;
 }
 
+/**
+ * haversine2
+ * \brief retorna distancia atraves da latitude e longitude de 2 stops
+ * @param lat1
+ * @param lon1
+ * @param lat2
+ * @param lon2
+ * @return distancia entre 2 stops
+ */
 
 double GraphCreate::haversine2(double lat1, double lon1, double lat2, double lon2) {
 
@@ -265,6 +350,14 @@ double GraphCreate::haversine2(double lat1, double lon1, double lat2, double lon
     return rad * c;
 }
 
+/**
+ * NodeToListIndex
+ * \brief atribui index aos nodes
+ * @param nodeNumber
+ * @param StopsCode
+ * @return index
+ */
+
 
 string GraphCreate::NodeToListIndex(int nodeNumber, list<string> StopsCode) {
     auto frontStopsCode = StopsCode.begin();
@@ -272,6 +365,16 @@ string GraphCreate::NodeToListIndex(int nodeNumber, list<string> StopsCode) {
     string StopCode = *frontStopsCode;
     return StopCode;
 }
+
+/***
+ * NodeToListIndexDouble
+ * Time Complexity: O(N)
+ * \brief função equivalente à anterior
+ * @param nodeNumber
+ * @param StopsLat
+ * @param StopsLong
+ * @return index
+ */
 
 list<double> GraphCreate::NodeToListIndexDouble(int nodeNumber, list<double> StopsLat, list<double> StopsLong) {
     auto frontStopsLat = StopsLat.begin();
@@ -286,6 +389,17 @@ list<double> GraphCreate::NodeToListIndexDouble(int nodeNumber, list<double> Sto
     return result;
 }
 
+/**
+ * CoordinatesNearByDistance
+ * Time Complexity: O(N)
+ * @param distance
+ * @param lat
+ * @param longi
+ * @param Lats
+ * @param Longis
+ * @param StopsName
+ * @return lista de coordenadas abaixo de uma certa distancia
+ */
 
 list<string> GraphCreate::CoordinatesNearByDistance(double distance,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
     list<string> result;
@@ -309,6 +423,17 @@ list<string> GraphCreate::CoordinatesNearByDistance(double distance,double lat,d
     return result;
 }
 
+/**
+ * CoordinatesNearByNumberOfStops
+ * Time Complexity: O(N)
+ * @param numStops
+ * @param lat
+ * @param longi
+ * @param Lats
+ * @param Longis
+ * @param StopsName
+ * @return lista de coordenadas a baixo de um número de stops
+ */
 
 list<string> GraphCreate::CoordinatesNearByNumberOfStops(int numStops,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
     list<string> result;
@@ -340,29 +465,15 @@ list<string> GraphCreate::CoordinatesNearByNumberOfStops(int numStops,double lat
     return result;
 }
 
-
-/* recebe um lista dos nomes das paragens de um certo caminho, a lista das zonas das paragens e dos nomes das paragens
- * compara os nomes com a lista que contem todos os nomes para sacar o index e ir buscar a zona da paragem
- * se for uma zona nova, adiciona a a lista de zonas
- * no fim, retorna o numero de zonas por onde passa um certo caminho
- * */
-list<string> GraphCreate::zonesPassed(list<string> stopsPassed, list<string> stopsZone, list<string> StopsName) {
-    list<string> zones;
-    for(auto & it : stopsPassed) {
-        int i = 0;
-        for(auto & et : StopsName) {
-            if (it == et) {
-                for(auto ot = zones.begin(); ot != zones.end(); ot++){
-                    if (*ot != NodeToListIndex(i,stopsZone)){
-                        zones.push_back(NodeToListIndex(i,stopsZone));
-                    }
-                }
-            }
-            i++;
-        }
-    }
-    return zones;
-}
+/**
+ * StopCodeOrNameToCoords
+ * Time Complexity: O(N)
+ * @param StopNames
+ * @param StopCodes
+ * @param StopsLat
+ * @param StopsLong
+ * @return lista de coordenadas correspondentes a nome ou codigo de stop
+ */
 
 
 list<double> GraphCreate::StopCodeOrNameToCoords(list<string> StopNames, list<string> StopCodes,list<double> StopsLat,list<double> StopsLong) {
@@ -394,6 +505,16 @@ list<double> GraphCreate::StopCodeOrNameToCoords(list<string> StopNames, list<st
         }
     }
 }
+
+/**
+ * StopCheck
+ * \brief verifica se a stop existe e retorna a
+ * Time Complexity: O(N)
+ * @param stop
+ * @param StopsCode
+ * @param StopsName
+ * @return lista com apenas umas stop
+ */
 
 list<string> GraphCreate::StopCheck(string stop, list<string> StopsCode, list<string> StopsName) {
     list<string> similarStops;
