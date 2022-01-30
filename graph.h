@@ -38,18 +38,22 @@ public:
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, string lineCode, double weight);
 
-    double dijkstra_distance(int a, int b);
-    list<int> dijkstra_path(int a, int b);
-
-    int bfs(int v1, int v2);
+    double dijkstra_distance(int a, int b,list<string> StopZones);
+    list<int> dijkstra_path(int a, int b, int type,list<string> StopZones);
 
     void bfsDist(int v);
 
     int distance(int a, int b);
 
-    void dijkstra(int s);
+    void dijkstra(int s, int type, list<string> StopZones);
 
-    list<int> dijkstra_path_walking(int a, int b, double d);
+    list<int> dijkstra_path_walking(int a, int b, double d, list<string> StopZones);
+
+    string checkPreviousLineCode(int u);
+
+    bool checkZoneChange(int u, int v, list<string> StopZones);
+
+    double haversine3(list<double> StopsLong, list<double> StopsLat, int src, int dest);
 };
 
 #endif

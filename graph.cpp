@@ -31,10 +31,10 @@ void Graph::bfsDist(int v){
     queue<int> q; // queue of unvisited nodes
     q.push(v);
     nodes[v].visited = true;
-    cout << "MST:" << endl;
+    //cout << "MST:" << endl;
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
-        cout << u << " "; // show node order
+        //cout << u << " "; // show node order
         for (auto e : nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited) {
@@ -49,15 +49,15 @@ void Graph::bfsDist(int v){
 #define INF (INT_MAX/2)
 
 // Distância entre dois nós
-double Graph::dijkstra_distance(int a, int b) {
-    dijkstra(a);
+double Graph::dijkstra_distance(int a, int b, list<string> StopZones) {
+    dijkstra(a,0,StopZones);
     if (nodes[b].distance == INF) return -1;
     return nodes[b].distance;
 }
 
 // Caminho mais curto entre dois nós
-list<int> Graph::dijkstra_path(int a, int b) {
-    dijkstra(a);
+list<int> Graph::dijkstra_path(int a, int b, int type,list<string> StopZones) {
+    dijkstra(a,type,StopZones);
     list<int> path;
     if (nodes[b].distance == INF) return path;
     path.push_back(b);
@@ -69,8 +69,8 @@ list<int> Graph::dijkstra_path(int a, int b) {
     return path;
 }
 
-list<int> Graph::dijkstra_path_walking(int a, int b, double d) {
-    dijkstra(a);
+list<int> Graph::dijkstra_path_walking(int a, int b, double d, list<string> StopZones) {
+    dijkstra(a,0,StopZones);
     list<int> path;
     if (nodes[b].distance == INF) return path;
     path.push_back(b);
@@ -88,7 +88,7 @@ list<int> Graph::dijkstra_path_walking(int a, int b, double d) {
 }
 
 //O(|E| log |V|)
-void Graph::dijkstra(int s) {
+void Graph::dijkstra(int s,int type,list<string> StopZones) {
     MinHeap<int, int> q(n, -1);
     for (int v=1; v<=n; v++) {
         nodes[v].distance = INF;
@@ -107,9 +107,49 @@ void Graph::dijkstra(int s) {
             double w = e.weight;
             if (!nodes[v].visited && nodes[u].distance + w < nodes[v].distance) {
                 nodes[v].distance = nodes[u].distance + w;
+                if (type == 1) {
+                    if (e.lineCode != checkPreviousLineCode(u) && checkPreviousLineCode(u) != "null") {
+                        nodes[v].distance += 10000;
+                    }
+                }
+                if (type == 2) {
+                    if (checkZoneChange(u,v,StopZones)) {
+                        nodes[v].distance += 10000;
+                    }
+                }
                 q.decreaseKey(v, nodes[v].distance);
                 nodes[v].pred = u;
             }
         }
     }
+}
+
+string Graph::checkPreviousLineCode(int u) {
+    int v;
+    if (nodes[u].pred <= n && nodes[u].pred >= 0) {
+        v = nodes[u].pred;
+    } else {
+        return "null";
+    }
+    for (auto e: nodes[v].adj) {
+        int w = e.dest;
+        if (w == u) {
+            return e.lineCode;
+        }
+    }
+}
+
+bool Graph::checkZoneChange(int u, int v, list<string> StopZones) {
+    auto frontStopZones = StopZones.begin();
+    advance(frontStopZones,u);
+    string StopZone = *frontStopZones;
+
+    auto frontStopZones2 = StopZones.begin();
+    advance(frontStopZones2,v);
+    string StopZone2 = *frontStopZones2;
+
+    if (StopZone != StopZone2) {
+        return true;
+    }
+    else return false;
 }

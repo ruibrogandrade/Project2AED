@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <map>
 #include <string>
 #include <list>
@@ -14,7 +13,7 @@ void printList(list<string> list) {
 }
 
 void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string> lines,
-                    list<string> LinesCode, map<string,int> StopsToInt, list<double> StopsLat, list<double> StopsLong) {
+                    list<string> LinesCode, map<string,int> StopsToInt, list<double> StopsLat, list<double> StopsLong, list<string> StopsZone) {
 
     GraphCreate CreateGraphs;
     Graph graph = CreateGraphs.CreateGraph(lines,LinesCode,StopsToInt,StopsLat,StopsLong);
@@ -64,7 +63,7 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
     while(true) {
         cout << "1) Deseja ver o percurso com menos paragens" << endl;
         cout << "2) Deseja ver o percurso mais curto" << endl;
-        cout << "3) Deseja ver o percurso com menos mudança de autocarros" << endl;
+        cout << "3) Deseja ver o percurso com menos mudanca de autocarros" << endl;
         cout << "4) Deseja ver o percurso mais barato" << endl;
         cin >> choice;
         cout << endl;
@@ -76,16 +75,38 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
             break;
         }
         else if (choice == 2) {
-            //dijkstra
+            list<int> path1 = graph.dijkstra_path(src,dest,0,StopsZone);
+            for (auto it = path1.begin(); it != path1.end(); it++) {
+                auto frontStopsCode = StopsCode.begin();
+                advance(frontStopsCode,(*it));
+                string StopCode = *frontStopsCode;
+                cout << StopCode << endl;
+            }
+            break;
         }
         else if (choice == 3) {
-            //TBD;
+            list<int> path1 = graph.dijkstra_path(src,dest,1,StopsZone);
+            for (auto it = path1.begin(); it != path1.end(); it++) {
+                auto frontStopsCode = StopsCode.begin();
+                advance(frontStopsCode,(*it));
+                string StopCode = *frontStopsCode;
+                cout << StopCode << endl;
+            }
+            break;
         }
         else if (choice == 4) {
-            //VERMENOSMUDANÇASDEZONAAAAAA
+            list<int> path1 = graph.dijkstra_path(src,dest,2,StopsZone);
+            for (auto it = path1.begin(); it != path1.end(); it++) {
+                auto frontStopsCode = StopsCode.begin();
+                advance(frontStopsCode,(*it));
+                string StopCode = *frontStopsCode;
+                cout << StopCode << endl;
+            }
+            break;
         }
         else {
             cout << "Input Invalido! Por favor tente de novo." << endl;
+            break;
         }
     }
 }
@@ -181,7 +202,7 @@ void menu() {
             break;
         }
         if (input == 2) {
-            PathCalculator(StopsName, StopsCode,lines,LinesCode,StopsToInt,StopsLat,StopsLong);
+            PathCalculator(StopsName, StopsCode,lines,LinesCode,StopsToInt,StopsLat,StopsLong,StopsZone);
             break;
         }
         else {

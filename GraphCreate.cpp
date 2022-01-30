@@ -99,11 +99,10 @@ list<double> GraphCreate::StopsLat() {
     ifstream file("dataset/stops.csv");
     string part;
     string line1;
-    int finalpos;
-    int pos;
     list<double> StopsLat;
     int i = 0;
     int j = 0;
+
     while(getline(file,part,',')){
         i++;
         j++;
