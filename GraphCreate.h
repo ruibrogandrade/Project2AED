@@ -34,17 +34,24 @@ public:
 
     list<string> StopsZone();
 
-    string NodeToStopCode(int nodeNumber, list<string> StopsCode);
-
-    list<string> CoordinatesNearDistance(double distance, double lat, double longi);
+    string NodeToListIndex(int nodeNumber, list<string> StopsCode);
 
     double haversine2(double lat1, double lon1, double lat2, double lon2);
 
-    list<string>
-    CoordinatesNearDistance(double distance, double lat, double longi, list<double> Lats, list<double> Longis,
+    list<string> CoordinatesNearByDistance(double distance, double lat, double longi, list<double> Lats, list<double> Longis,
                             list<string> StopsName);
 
-    void printList(list<string> list);
+    list<string> zonesPassed(list<string> stopsPassed, list<string> stopsZone, list<string> StopsName);
+
+    list<string>
+    CoordinatesNearByNumberOfStops(int numStops, double lat, double longi, list<double> Lats, list<double> Longis,
+                                   list<string> StopsName);
+
+    list<double> StopCodeOrNameToCoords(list<string> StopNames, list<string> StopCodes,list<double> StopsLat,list<double> StopsLong);
+
+    list<double> NodeToListIndexDouble(int nodeNumber, list<double> StopsLat, list<double> StopsLong);
+
+    list<string> StopCheck(string stop, list<string> StopsCode, list<string> StopsName);
 };
 
 

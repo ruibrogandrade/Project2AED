@@ -4,6 +4,7 @@
 
 #include "GraphCreate.h"
 #include <math.h>
+#include <algorithm>
 
 
 list<string> GraphCreate::readLines() {
@@ -266,30 +267,174 @@ double GraphCreate::haversine2(double lat1, double lon1, double lat2, double lon
 }
 
 
-string GraphCreate::NodeToStopCode(int nodeNumber, list<string> StopsCode) {
+string GraphCreate::NodeToListIndex(int nodeNumber, list<string> StopsCode) {
     auto frontStopsCode = StopsCode.begin();
     advance(frontStopsCode,nodeNumber);
     string StopCode = *frontStopsCode;
     return StopCode;
 }
 
+list<double> GraphCreate::NodeToListIndexDouble(int nodeNumber, list<double> StopsLat, list<double> StopsLong) {
+    auto frontStopsLat = StopsLat.begin();
+    auto frontStopsLong = StopsLong.begin();
+    advance(frontStopsLat,nodeNumber);
+    advance(frontStopsLong,nodeNumber);
+    double StopLat = *frontStopsLat;
+    double StopLong = *frontStopsLong;
+    list<double> result;
+    result.push_back(StopLat);
+    result.push_back(StopLong);
+    return result;
+}
 
-list<string> GraphCreate::CoordinatesNearDistance(double distance,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
+
+list<string> GraphCreate::CoordinatesNearByDistance(double distance,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
     list<string> result;
+    map<int,string> map;
     int i = 0;
     for(auto it = Lats.begin(); it !=  Lats.end(); it++) {
         auto et = Longis.begin();
 
         double dist = abs(haversine2(*it,*et,lat,longi));
-        if (dist < distance) result.push_back(NodeToStopCode(i,StopsName));
+        if (dist < distance) map.insert({i,NodeToListIndex(i,StopsName)});
         i++;
         et++;
+    }
+
+    for (auto ut = map.begin(); ut != map.end(); ut++) {
+        auto pt = find(result.begin(), result.end(), ut->second);
+        if (pt == result.end() || result.empty()) {
+            result.push_back(ut->second);
+        }
     }
     return result;
 }
 
-void GraphCreate::printList(list<string> list) {
-    for (auto it = list.begin(); it != list.end(); it++) {
-        cout << (*it) << endl;
+
+list<string> GraphCreate::CoordinatesNearByNumberOfStops(int numStops,double lat,double longi, list<double> Lats, list<double> Longis, list<string> StopsName) {
+    list<string> result;
+    list<double> distanceList;
+    multimap<double,int> map;
+
+    int i = 0;
+    for(auto it = Lats.begin(); it !=  Lats.end(); it++) {
+        auto et = Longis.begin();
+
+        double dist = abs(haversine2(*it,*et,lat,longi));
+        map.insert({dist,i});
+        i++;
+        et++;
     }
+    auto ut = map.begin();
+    for(int j = 0; j < numStops; j++) {
+        string stopName = NodeToListIndex((*ut).second,StopsName);
+        auto pt = find(result.begin(), result.end(),stopName);
+        if (pt == result.end() || result.empty()) {
+            result.push_back(NodeToListIndex((*ut).second,StopsName));
+        }
+        else {
+            j--;
+        }
+        ut++;
+    }
+
+    return result;
+}
+
+
+/* recebe um lista dos nomes das paragens de um certo caminho, a lista das zonas das paragens e dos nomes das paragens
+ * compara os nomes com a lista que contem todos os nomes para sacar o index e ir buscar a zona da paragem
+ * se for uma zona nova, adiciona a a lista de zonas
+ * no fim, retorna o numero de zonas por onde passa um certo caminho
+ * */
+list<string> GraphCreate::zonesPassed(list<string> stopsPassed, list<string> stopsZone, list<string> StopsName) {
+    list<string> zones;
+    for(auto & it : stopsPassed) {
+        int i = 0;
+        for(auto & et : StopsName) {
+            if (it == et) {
+                for(auto ot = zones.begin(); ot != zones.end(); ot++){
+                    if (*ot != NodeToListIndex(i,stopsZone)){
+                        zones.push_back(NodeToListIndex(i,stopsZone));
+                    }
+                }
+            }
+            i++;
+        }
+    }
+    return zones;
+}
+
+
+list<double> GraphCreate::StopCodeOrNameToCoords(list<string> StopNames, list<string> StopCodes,list<double> StopsLat,list<double> StopsLong) {
+    while(true) {
+        cout << "Insira o nome ou código da stop:";
+        string nome;
+        cin.clear();
+        cin.sync();
+        getline(cin,nome);
+        cout << endl;
+        list<double> latAndLong;
+        list<double> result;
+        int i = 0;
+        for (auto it = StopNames.begin(); it != StopNames.end(); it++) {
+            if ((*it) == nome) {
+                result = NodeToListIndexDouble(i, StopsLat, StopsLong);
+            }
+        }
+        for (auto it = StopCodes.begin(); it != StopCodes.end(); it++) {
+            if ((*it) == nome) {
+                result = NodeToListIndexDouble(i, StopsLat, StopsLong);
+            }
+        }
+        if (!result.empty()) {
+            return result;
+        }
+        else {
+            cout << "Input Invalido! Por favor tente de novo." << endl;
+        }
+    }
+}
+
+list<string> GraphCreate::StopCheck(string stop, list<string> StopsCode, list<string> StopsName) {
+    list<string> similarStops;
+    list<string> result;
+    int num;
+    int i = 0;
+    bool flag = false;
+    for(auto it = StopsCode.begin(); it != StopsCode.end(); it++) {
+        if(*it == stop) {
+            result.push_back(*it);
+            flag = true;
+            break;
+        }
+    }
+
+    if(!flag) {
+        for (auto et = StopsName.begin(); et != StopsName.end(); et++) {
+            if (*et == stop) {
+                similarStops.push_back(NodeToListIndex(i, StopsCode));
+            }
+            i++;
+        }
+
+        while (true) {
+            int j = 0;
+            cout << "Que paragem e que deseja escolher?" << endl;
+            for (auto ut = similarStops.begin(); ut != similarStops.end(); ut++) {
+                cout << j << "- " << *ut << endl;
+                j++;
+            }
+
+            cin >> num;
+
+            if (num > similarStops.size() - 1) {
+                result.push_back(NodeToListIndex(num, similarStops));
+                break;
+            } else {
+                cout << "Input Invalido! Por favor tente de novo." << endl;
+            }
+        }
+    }
+    return result;
 }

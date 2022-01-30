@@ -7,8 +7,155 @@
 
 using namespace std;
 
+void printList(list<string> list) {
+    for (auto it = list.begin(); it != list.end(); it++) {
+        cout << (*it) << endl;
+    }
+}
 
-int main() {
+void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string> lines,
+                    list<string> LinesCode, map<string,int> StopsToInt, list<double> StopsLat, list<double> StopsLong) {
+
+    GraphCreate CreateGraphs;
+    Graph graph = CreateGraphs.CreateGraph(lines,LinesCode,StopsToInt,StopsLat,StopsLong);
+    string stop1;
+    string stop2;
+    int choice;
+    float walkingdistance;
+    int src;
+    int dest;
+    while (true) {
+        cout << "Qual e o nome ou codigo da sua paragem inicial?" << endl;
+        cin.clear();
+        cin.sync();
+        getline(cin,stop1);
+        if (!CreateGraphs.StopCheck(stop1, StopsCode, StopsName).empty()) {
+            stop1 = *CreateGraphs.StopCheck(stop1, StopsCode, StopsName).begin();
+            break;
+        }
+        else {
+            cout << "Input Invalido! Por favor tente de novo." << endl;
+        }
+    }
+    while (true) {
+        cout << "Qual e o nome ou codigo da sua paragem final?" << endl;
+        cin.clear();
+        cin.sync();
+        getline(cin,stop2);
+        if (!CreateGraphs.StopCheck(stop2, StopsCode, StopsName).empty()) {
+            stop2 = *CreateGraphs.StopCheck(stop2, StopsCode, StopsName).begin();
+            break;
+        }
+        else {
+            cout << "Input Invalido! Por favor tente de novo." << endl;
+        }
+    }
+
+    auto et = StopsToInt.find((stop1));
+    if (et != StopsToInt.end()) {
+        src = et->second;
+    }
+
+    auto ot = StopsToInt.find((stop2));
+    if (ot != StopsToInt.end()) {
+        dest = ot->second;
+    }
+
+    while(true) {
+        cout << "1) Deseja ver o percurso com menos paragens" << endl;
+        cout << "2) Deseja ver o percurso mais curto" << endl;
+        cout << "3) Deseja ver o percurso com menos mudança de autocarros" << endl;
+        cout << "4) Deseja ver o percurso mais barato" << endl;
+        cin >> choice;
+        cout << endl;
+        //cout << "Está disposto a caminhar quantos kms a pé?" << endl;
+        //cin >> walkingdistance;
+        //cout << endl;
+        if (choice == 1) {
+            cout << graph.distance(src,dest) << endl;
+            break;
+        }
+        else if (choice == 2) {
+            //dijkstra
+        }
+        else if (choice == 3) {
+            //TBD;
+        }
+        else if (choice == 4) {
+            //VERMENOSMUDANÇASDEZONAAAAAA
+        }
+        else {
+            cout << "Input Invalido! Por favor tente de novo." << endl;
+        }
+    }
+}
+
+void StopsClosestTo(list<double> StopsLat, list<double> StopsLong, list<string> StopsName, list<string> StopsCode) {
+    GraphCreate CreateGraphs;
+    int parameter;
+    int numberOfStops;
+    string nome;
+    double distance;
+    double lat;
+    double longi;
+    int input;
+    list<double> coords;
+    cout << "1) Quer utilizar as coordenadas de uma paragem ja existente" << endl;
+    cout << "2) Quer dar input manualmente das coordenadas" << endl;
+    cin >> input;
+    if (input == 1) {
+        coords = CreateGraphs.StopCodeOrNameToCoords(StopsName,StopsCode,StopsLat,StopsLong);
+        auto lit = coords.begin();
+        lat = *lit;
+        lit++;
+        longi = *lit;
+        cout << "1) Pretende ver as paragens dentro de uma certa distancia" << endl;
+        cout << "2) Pretende ver um certo numero de paragens" << endl;
+        cin >> parameter;
+        if (parameter == 1) {
+            cout << "Que distancia maxima deseja ver da sua localizacao?" << endl;
+            cin >> distance;
+            list<string> nameStops = CreateGraphs.CoordinatesNearByDistance(distance,lat,longi,StopsLat,StopsLong, StopsName);
+            printList(nameStops);
+        }
+        else if (parameter == 2) {
+            cout << "Quantas paragens perto da sua localização pretende ver?" << endl;
+            cin >> numberOfStops;
+            list<string> nameStops = CreateGraphs.CoordinatesNearByNumberOfStops(numberOfStops,lat,longi,StopsLat,StopsLong, StopsName);
+            printList(nameStops);
+        }
+    }
+    else if(input == 2) {
+        cout << "Insira as suas coordenadas:" << endl;
+        cout << "Latitude:";
+        cin >> lat;
+        cout << endl;
+        cout << "Longitude:";
+        cin >> longi;
+        cout << endl;
+        cout << "1) Pretende ver as paragens dentro de uma certa distancia" << endl;
+        cout << "2) Pretende ver um certo numero de paragens" << endl;
+        cin >> parameter;
+        if (parameter == 1) {
+            cout << "Que distancia maxima deseja ver da sua localizacao?" << endl;
+            cin >> distance;
+            list<string> nameStops = CreateGraphs.CoordinatesNearByDistance(distance,lat,longi,StopsLat,StopsLong, StopsName);
+            printList(nameStops);
+        }
+        else if (parameter == 2) {
+            cout << "Quantas paragens perto da sua localização pretende ver?" << endl;
+            cin >> numberOfStops;
+            list<string> nameStops = CreateGraphs.CoordinatesNearByNumberOfStops(numberOfStops,lat,longi,StopsLat,StopsLong, StopsName);
+            printList(nameStops);
+        }
+    }
+    else {
+        cout << "Input Invalido! Por favor tente de novo!" << endl;
+    }
+}
+
+void menu() {
+
     GraphCreate CreateGraphs;
     list<string> lines = CreateGraphs.readLines();
     map<string,int> StopsToInt = CreateGraphs.StopsToMap();
@@ -19,49 +166,40 @@ int main() {
 
     list<string> StopsCode = CreateGraphs.StopsCode();
     list<string> StopsName = CreateGraphs.StopsName();
-    //list<string> LinesName = CreateGraphs.LinesName();
+    list<string> LinesName = CreateGraphs.LinesName();
     list<string> LinesCode = CreateGraphs.LinesCode();
-    //list<string> StopsZone = CreateGraphs.StopsZone();
+    list<string> StopsZone = CreateGraphs.StopsZone();
 
-    string whatdoestheuserwant;
-    int parameter;
-    int numberOfStops;
-    double distance;
-    double lat;
-    double longi;
-    cout << "What do you want to see?" << endl;
-    cin >> whatdoestheuserwant;
-    if (whatdoestheuserwant == "Coordinates") {
-        cout << "Please, input your coordinates!" << endl;
-        cout << "Latitude:";
-        cin >> lat;
-        cout << "Longitude:";
-        cin >> longi;
-        cout << "What Parameter do you want to use?" << endl;
-        cout << "1) Distance" << endl;
-        cout << "2) Number of Stops" << endl;
-        cin >> parameter;
-        if (parameter == 1) {
-            cout << "What is the max distance that you, the user, might consider as the maximum relative to your current location?" << endl;
-            cin >> distance;
-            list<string> coords = CreateGraphs.CoordinatesNearDistance(distance,lat,longi,StopsLat,StopsLong, StopsName);
-            CreateGraphs.printList(coords);
+
+    while(true) {
+        int input;
+        cout << "1) Pretende ver as paragens mais proximas de um certo ponto" << endl;
+        cout << "2) Pretende fazer um percurso" << endl;
+        cin >> input;
+        if (input == 1) {
+            StopsClosestTo(StopsLat,StopsLong,StopsName,StopsCode);
+            break;
         }
-        else if (parameter == 2) {
-            cout << "How many nearby Stops do you want to see?" << endl;
-            cin >> numberOfStops;
-            for (int i = 0; i < numberOfStops; i++) {
-                //doSomething(lat,longi);
-            }
-        }
+        if (input == 2) {
+            PathCalculator(StopsName, StopsCode,lines,LinesCode,StopsToInt,StopsLat,StopsLong);
+            break;
         }
         else {
-            cout << "That's not an option!";
+            cout << "Input Invalido! Por favor tente de novo!" << endl;
+        }
     }
-    if (whatdoestheuserwant == "") {
+}
 
-    }
 
+
+
+
+int main() {
+
+    GraphCreate CreateGraphs;
+
+    menu();
+/*
     Graph graph = CreateGraphs.CreateGraph(lines,LinesCode,StopsToInt,StopsLat,StopsLong);
 
     string StopCode1 = "INF1";
@@ -104,11 +242,6 @@ int main() {
     }
      */
 
-
-
-    cout << endl;
-
-
     //Distancia entre duas stops em km!!!! :DDDD
     //cout << graph.dijkstra_distance(src, dest) << endl;
     /*
@@ -150,11 +283,8 @@ int main() {
     }
      */
 
-    //Ler o nome de um ficheiro -> criar um grapho
-    // -> fazer addEdges no grafo até ter todas as stops
-    // -> meter o grapho no vetor -> ir para a proxima linha
-    // -> repeat;
-
     return 0;
 }
+
+
 

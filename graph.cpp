@@ -15,36 +15,13 @@ void Graph::addEdge(int src, int dest, string lineCode, double weight) {
     if (!hasDir) nodes[dest].adj.push_back({src, weight});
 }
 
-/*
-int Graph::bfs(int v1, int v2) {
-    for (int v=1; v<=n; v++) nodes[v].visited = false;
-    queue<int> q; // queue of unvisited nodes
-    q.push(v1);
-    int dist = 0;
-    nodes[v1]. visited = true;
-    int i = 0;
-    while (!q.empty()) { // while there are still unvisited nodes
-        int u = q.front(); q.pop();
-        cout << u << " "; // show node order
-        for (auto e : nodes[u].adj) {
-            int w = e.dest;
-            if (w == v2) return dist;
-            if (!nodes[w].visited) {
-                q.push(w);
-                nodes[w].visited = true;
-            }
-        }
-        dist++;
-    }
-    return -1;
-}
-*/
-
 int Graph::distance(int a, int b) {
     if(a == b) return 0;
     for(int i = 1; i <= n; i++)
         nodes[i].distance = -1;
     bfsDist(a);
+    cout << endl << endl;
+    cout << "Distance: ";
     return nodes[b].distance;
 }
 
@@ -54,9 +31,10 @@ void Graph::bfsDist(int v){
     queue<int> q; // queue of unvisited nodes
     q.push(v);
     nodes[v].visited = true;
+    cout << "MST:" << endl;
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
-        //cout << u << " "; // show node order
+        cout << u << " "; // show node order
         for (auto e : nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited) {
@@ -67,7 +45,6 @@ void Graph::bfsDist(int v){
         }
     }
 }
-
 
 #define INF (INT_MAX/2)
 
