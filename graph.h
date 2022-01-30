@@ -49,7 +49,7 @@ public:
 
     list<int> dijkstra_path_walking(int a, int b, double d, list<string> StopZones);
 
-    string checkPreviousLineCode(int u);
+    string checkPreviousLineCode(int u, int s);
 
     bool checkZoneChange(int u, int v, list<string> StopZones);
 

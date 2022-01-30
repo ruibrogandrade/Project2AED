@@ -108,7 +108,7 @@ void Graph::dijkstra(int s,int type,list<string> StopZones) {
             if (!nodes[v].visited && nodes[u].distance + w < nodes[v].distance) {
                 nodes[v].distance = nodes[u].distance + w;
                 if (type == 1) {
-                    if (e.lineCode != checkPreviousLineCode(u) && checkPreviousLineCode(u) != "null") {
+                    if (e.lineCode != checkPreviousLineCode(u,s) && checkPreviousLineCode(u,s) != "null") {
                         nodes[v].distance += 10000;
                     }
                 }
@@ -124,9 +124,9 @@ void Graph::dijkstra(int s,int type,list<string> StopZones) {
     }
 }
 
-string Graph::checkPreviousLineCode(int u) {
+string Graph::checkPreviousLineCode(int u, int s) {
     int v;
-    if (nodes[u].pred <= n && nodes[u].pred >= 0) {
+    if (u != s) {
         v = nodes[u].pred;
     } else {
         return "null";

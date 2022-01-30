@@ -61,15 +61,12 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
     }
 
     while(true) {
-        cout << "1) Deseja ver o percurso com menos paragens" << endl;
+        cout << "1) Deseja ver qual e o numero minimo de paragens para um certo percurso" << endl;
         cout << "2) Deseja ver o percurso mais curto" << endl;
         cout << "3) Deseja ver o percurso com menos mudanca de autocarros" << endl;
         cout << "4) Deseja ver o percurso mais barato" << endl;
         cin >> choice;
         cout << endl;
-        //cout << "Está disposto a caminhar quantos kms a pé?" << endl;
-        //cin >> walkingdistance;
-        //cout << endl;
         if (choice == 1) {
             cout << graph.distance(src,dest) << endl;
             break;
@@ -77,9 +74,9 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
         else if (choice == 2) {
             list<int> path1 = graph.dijkstra_path(src,dest,0,StopsZone);
             for (auto it = path1.begin(); it != path1.end(); it++) {
-                auto frontStopsCode = StopsCode.begin();
-                advance(frontStopsCode,(*it));
-                string StopCode = *frontStopsCode;
+                auto frontStopsName = StopsName.begin();
+                advance(frontStopsName,(*it));
+                string StopCode = *frontStopsName;
                 cout << StopCode << endl;
             }
             break;
@@ -87,9 +84,9 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
         else if (choice == 3) {
             list<int> path1 = graph.dijkstra_path(src,dest,1,StopsZone);
             for (auto it = path1.begin(); it != path1.end(); it++) {
-                auto frontStopsCode = StopsCode.begin();
-                advance(frontStopsCode,(*it));
-                string StopCode = *frontStopsCode;
+                auto frontStopsName = StopsName.begin();
+                advance(frontStopsName,(*it));
+                string StopCode = *frontStopsName;
                 cout << StopCode << endl;
             }
             break;
@@ -97,9 +94,9 @@ void PathCalculator(list<string> StopsName, list<string> StopsCode, list<string>
         else if (choice == 4) {
             list<int> path1 = graph.dijkstra_path(src,dest,2,StopsZone);
             for (auto it = path1.begin(); it != path1.end(); it++) {
-                auto frontStopsCode = StopsCode.begin();
-                advance(frontStopsCode,(*it));
-                string StopCode = *frontStopsCode;
+                auto frontStopsName = StopsName.begin();
+                advance(frontStopsName,(*it));
+                string StopCode = *frontStopsName;
                 cout << StopCode << endl;
             }
             break;
@@ -220,92 +217,6 @@ int main() {
     GraphCreate CreateGraphs;
 
     menu();
-/*
-    Graph graph = CreateGraphs.CreateGraph(lines,LinesCode,StopsToInt,StopsLat,StopsLong);
-
-    string StopCode1 = "INF1";
-    string StopCode2 = "MON3";
-    int src;
-    int dest;
-    double walking;
-
-    cout << "Where do you want to go from?" << endl;
-    cin >> StopCode1;
-    cout << "Where do you want to go to?" << endl;
-    cin >> StopCode2;
-    cout << "How many km do you want to walk?" << endl;
-    cin >> walking;
-
-    auto et = StopsToInt.find((StopCode1));
-    if (et != StopsToInt.end()) {
-        src = et->second;
-    }
-
-    auto ot = StopsToInt.find((StopCode2));
-    if (ot != StopsToInt.end()) {
-        dest = ot->second;
-    }
-
-
-    //Trajeto com menos Stops!!!!!! :DDD
-    //cout << graph.bfs(src,dest) << endl;
-
-
-
-    //Trajeto com menor distância!!!! :DDDDD
-    /*
-    list<int> path1 = graph.dijkstra_path(src,dest);
-    for (auto it = path1.begin(); it != path1.end(); it++) {
-        auto frontStopsCode = StopsCode.begin();
-        advance(frontStopsCode,(*it));
-        string StopCode = *frontStopsCode;
-        cout << StopCode << endl;
-    }
-     */
-
-    //Distancia entre duas stops em km!!!! :DDDD
-    //cout << graph.dijkstra_distance(src, dest) << endl;
-    /*
-    int src1;
-    int dest1;
-
-    auto ut = StopsToInt.find(("DL5"));
-    if (et != StopsToInt.end()) {
-        src1 = et->second;
-    }
-
-    auto at = StopsToInt.find(("CNT3"));
-    if (ot != StopsToInt.end()) {
-        dest1 = ot->second;
-    }
-    cout << graph.dijkstra_distance(src1, dest1) << endl;
-
-    cout << endl;
-     */
-
-
-    //Trajeto que tem em conta a distancia que o utilizador quer caminhar!!!! :DDDD
-    /*
-    list<int> path2 = graph.dijkstra_path_walking(src, dest, walking);
-    for (auto it = path2.begin(); it != path2.end(); it++) {
-        auto frontStopsCode = StopsCode.begin();
-        advance(frontStopsCode,(*it));
-        string StopCode = *frontStopsCode;
-        cout << StopCode << endl;
-    }
-
-    if(path1.size() > path2.size()) {
-        int diff = path1.size() - path2.size();
-        auto it = path1.end();
-        for (int i = 0; i < diff; i++) {
-            it--;
-            cout << "WALKING -> " << CreateGraphs.NodeToStopCode((*it),StopsCode) << endl;
-        }
-    }
-     */
 
     return 0;
 }
-
-
-
