@@ -1,0 +1,122 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_aea1ccddf24645ef7a20b10bf09613d40}\label{class_graph_aea1ccddf24645ef7a20b10bf09613d40}} 
+{\bfseries Graph} (int nodes, bool dir)
+\item 
+\mbox{\Hypertarget{class_graph_a5c3b8d1129e64f73df55e6145ca51d9b}\label{class_graph_a5c3b8d1129e64f73df55e6145ca51d9b}} 
+void {\bfseries add\+Edge} (int src, int dest, string line\+Code, double weight)
+\item 
+\mbox{\Hypertarget{class_graph_a15107793d54a8ae8b42a69a72ba5c5a9}\label{class_graph_a15107793d54a8ae8b42a69a72ba5c5a9}} 
+double {\bfseries dijkstra\+\_\+distance} (int a, int b, list$<$ string $>$ Stop\+Zones)
+\item 
+list$<$ int $>$ \mbox{\hyperlink{class_graph_a318d359c632d8113e2e68f907628c48c}{dijkstra\+\_\+path}} (int a, int b, int type, list$<$ string $>$ Stop\+Zones)
+\item 
+void \mbox{\hyperlink{class_graph_a0a75a704f5bebdc893cc94e04b78d410}{bfs\+Dist}} (int v)
+\item 
+\mbox{\Hypertarget{class_graph_a5a816844b989c28c01b97015ab8868e4}\label{class_graph_a5a816844b989c28c01b97015ab8868e4}} 
+int {\bfseries distance} (int a, int b)
+\item 
+void \mbox{\hyperlink{class_graph_a0d4f8451b7b04fa3018035f785481af6}{dijkstra}} (int s, int type, list$<$ string $>$ Stop\+Zones)
+\item 
+\mbox{\Hypertarget{class_graph_a23a86165a30352367f407525b921af9c}\label{class_graph_a23a86165a30352367f407525b921af9c}} 
+list$<$ int $>$ {\bfseries dijkstra\+\_\+path\+\_\+walking} (int a, int b, double d, list$<$ string $>$ Stop\+Zones)
+\item 
+string \mbox{\hyperlink{class_graph_a93316af396039139541cff44a5948e44}{check\+Previous\+Line\+Code}} (int u, int s)
+\item 
+bool \mbox{\hyperlink{class_graph_a0994ad363ea43553f3095f0f6fc8bca3}{check\+Zone\+Change}} (int u, int v, list$<$ string $>$ Stop\+Zones)
+\item 
+\mbox{\Hypertarget{class_graph_af1bad5bbcde38a1eee444b8c5af7c9f3}\label{class_graph_af1bad5bbcde38a1eee444b8c5af7c9f3}} 
+double {\bfseries haversine3} (list$<$ double $>$ Stops\+Long, list$<$ double $>$ Stops\+Lat, int src, int dest)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a0a75a704f5bebdc893cc94e04b78d410}\label{class_graph_a0a75a704f5bebdc893cc94e04b78d410}} 
+\index{Graph@{Graph}!bfsDist@{bfsDist}}
+\index{bfsDist@{bfsDist}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfsDist()}{bfsDist()}}
+{\footnotesize\ttfamily void Graph\+::bfs\+Dist (\begin{DoxyParamCaption}\item[{int}]{v }\end{DoxyParamCaption})}
+
+Algoritmo de BFS Time Complexity = O(V + E) 
+\begin{DoxyParams}{Parameters}
+{\em v} & -\/ primeiro node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a93316af396039139541cff44a5948e44}\label{class_graph_a93316af396039139541cff44a5948e44}} 
+\index{Graph@{Graph}!checkPreviousLineCode@{checkPreviousLineCode}}
+\index{checkPreviousLineCode@{checkPreviousLineCode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{checkPreviousLineCode()}{checkPreviousLineCode()}}
+{\footnotesize\ttfamily string Graph\+::check\+Previous\+Line\+Code (\begin{DoxyParamCaption}\item[{int}]{u,  }\item[{int}]{s }\end{DoxyParamCaption})}
+
+check\+Previous\+Line\+Code 
+\begin{DoxyParams}{Parameters}
+{\em u} & node \+:D \\
+\hline
+{\em s} & node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+codigo de linha 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0994ad363ea43553f3095f0f6fc8bca3}\label{class_graph_a0994ad363ea43553f3095f0f6fc8bca3}} 
+\index{Graph@{Graph}!checkZoneChange@{checkZoneChange}}
+\index{checkZoneChange@{checkZoneChange}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{checkZoneChange()}{checkZoneChange()}}
+{\footnotesize\ttfamily bool Graph\+::check\+Zone\+Change (\begin{DoxyParamCaption}\item[{int}]{u,  }\item[{int}]{v,  }\item[{list$<$ string $>$}]{Stop\+Zones }\end{DoxyParamCaption})}
+
+check\+Zone\+Change 
+\begin{DoxyParams}{Parameters}
+{\em u} & node \\
+\hline
+{\em v} & node \\
+\hline
+{\em Stop\+Zones} & zonas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+booleano se stops tiverem zonas diferentes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0d4f8451b7b04fa3018035f785481af6}\label{class_graph_a0d4f8451b7b04fa3018035f785481af6}} 
+\index{Graph@{Graph}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily void Graph\+::dijkstra (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{int}]{type,  }\item[{list$<$ string $>$}]{Stop\+Zones }\end{DoxyParamCaption})}
+
+Algoritmo de dijsktra Complexity = O($\vert$\+E$\vert$ log $\vert$\+V$\vert$) 
+\begin{DoxyParams}{Parameters}
+{\em s} & \\
+\hline
+{\em type} & \\
+\hline
+{\em Stop\+Zones} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a318d359c632d8113e2e68f907628c48c}\label{class_graph_a318d359c632d8113e2e68f907628c48c}} 
+\index{Graph@{Graph}!dijkstra\_path@{dijkstra\_path}}
+\index{dijkstra\_path@{dijkstra\_path}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dijkstra\_path()}{dijkstra\_path()}}
+{\footnotesize\ttfamily list$<$ int $>$ Graph\+::dijkstra\+\_\+path (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{type,  }\item[{list$<$ string $>$}]{Stop\+Zones }\end{DoxyParamCaption})}
+
+Algoritmo de disjkstra para caminhos 
+\begin{DoxyParams}{Parameters}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em type} & \\
+\hline
+{\em Stop\+Zones} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+caminho 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/andre/\+CLion\+Projects/\+Projeto2\+AED/graph.\+h\item 
+C\+:/\+Users/andre/\+CLion\+Projects/\+Projeto2\+AED/graph.\+cpp\end{DoxyCompactItemize}

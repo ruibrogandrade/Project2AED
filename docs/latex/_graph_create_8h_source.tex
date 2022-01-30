@@ -1,0 +1,64 @@
+\hypertarget{_graph_create_8h_source}{}\doxysection{Graph\+Create.\+h}
+\label{_graph_create_8h_source}\index{C:/Users/andre/CLionProjects/Projeto2AED/GraphCreate.h@{C:/Users/andre/CLionProjects/Projeto2AED/GraphCreate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Rui on 24/01/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef PROJETO2AED\_GRAPHCREATE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define PROJETO2AED\_GRAPHCREATE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}graph.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph_create}{GraphCreate}} \{}
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     list<string> \mbox{\hyperlink{class_graph_create_a0a1eafaa41a06ed583c71c5c8b7fd798}{readLines}}();}
+\DoxyCodeLine{18     list<string> \mbox{\hyperlink{class_graph_create_a72fe8a5125a0e606f33046a1d883219e}{readStopsinLine}}(list<string> result, \textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{19     map<string, int> \mbox{\hyperlink{class_graph_create_abcd6121a31dea8bf07f610aaa75af4a3}{StopsToMap}}();}
+\DoxyCodeLine{20     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_create_a08e76d2b40da86e0be95bceb5eb71f4b}{CreateGraph}}(list<string> lines, list<string> \mbox{\hyperlink{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}{LinesCode}}, map<string, int> StopsToInt, list<double> \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{StopsLat}}, list<double> \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{StopsLong}});}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     list<double> \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{StopsLat}}();}
+\DoxyCodeLine{23     list<double> \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{StopsLong}}();}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{keywordtype}{double} haversine(list<double> \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{StopsLong}}, list<double> \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{StopsLat}}, \textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     list<string> \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{StopsCode}}();}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     list<string> \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{StopsName}}();}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     list<string> \mbox{\hyperlink{class_graph_create_a5405d00b18cde827df7459412ff80d52}{LinesName}}();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     list<string> \mbox{\hyperlink{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}{LinesCode}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     list<string> \mbox{\hyperlink{class_graph_create_a99532f548583c0b98bf5df4dfab35466}{StopsZone}}();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_graph_create_aa24949feeb69f4e61cea55e01deeee3d}{NodeToListIndex}}(\textcolor{keywordtype}{int} nodeNumber, list<string> \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{StopsCode}});}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_create_a699bcaf0830356aad724271ec68477a8}{haversine2}}(\textcolor{keywordtype}{double} lat1, \textcolor{keywordtype}{double} lon1, \textcolor{keywordtype}{double} lat2, \textcolor{keywordtype}{double} lon2);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     list<string> \mbox{\hyperlink{class_graph_create_a532abfece667c21dbec9c0da0f6f2b2a}{CoordinatesNearByDistance}}(\textcolor{keywordtype}{double} distance, \textcolor{keywordtype}{double} lat, \textcolor{keywordtype}{double} longi, list<double> Lats, list<double> Longis,}
+\DoxyCodeLine{42                             list<string> \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{StopsName}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     list<string> zonesPassed(list<string> stopsPassed, list<string> stopsZone, list<string> \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{StopsName}});}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     list<string>}
+\DoxyCodeLine{47     \mbox{\hyperlink{class_graph_create_a7e5c8f4cd13a5d694edc7fc874ac8b31}{CoordinatesNearByNumberOfStops}}(\textcolor{keywordtype}{int} numStops, \textcolor{keywordtype}{double} lat, \textcolor{keywordtype}{double} longi, list<double> Lats, list<double> Longis,}
+\DoxyCodeLine{48                                    list<string> \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{StopsName}});}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     list<double> \mbox{\hyperlink{class_graph_create_a62c4f2f82d49d9e4f486dba94fe2cfcc}{StopCodeOrNameToCoords}}(list<string> StopNames, list<string> StopCodes,list<double> \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{StopsLat}},list<double> \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{StopsLong}});}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     list<double> NodeToListIndexDouble(\textcolor{keywordtype}{int} nodeNumber, list<double> \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{StopsLat}}, list<double> \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{StopsLong}});}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     list<string> \mbox{\hyperlink{class_graph_create_a288087afe3d1aa154b28fdd635cf564a}{StopCheck}}(\textcolor{keywordtype}{string} stop, list<string> \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{StopsCode}}, list<string> \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{StopsName}});}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO2AED\_GRAPHCREATE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,310 @@
+\hypertarget{class_graph_create}{}\doxysection{Graph\+Create Class Reference}
+\label{class_graph_create}\index{GraphCreate@{GraphCreate}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a0a1eafaa41a06ed583c71c5c8b7fd798}{read\+Lines}} ()
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a72fe8a5125a0e606f33046a1d883219e}{read\+Stopsin\+Line}} (list$<$ string $>$ result, int i)
+\item 
+map$<$ string, int $>$ \mbox{\hyperlink{class_graph_create_abcd6121a31dea8bf07f610aaa75af4a3}{Stops\+To\+Map}} ()
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_create_a08e76d2b40da86e0be95bceb5eb71f4b}{Create\+Graph}} (list$<$ string $>$ lines, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}{Lines\+Code}}, map$<$ string, int $>$ Stops\+To\+Int, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{Stops\+Lat}}, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{Stops\+Long}})
+\item 
+list$<$ double $>$ \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{Stops\+Lat}} ()
+\item 
+list$<$ double $>$ \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{Stops\+Long}} ()
+\item 
+\mbox{\Hypertarget{class_graph_create_a8418bd54701c9bf1215708886b88d60a}\label{class_graph_create_a8418bd54701c9bf1215708886b88d60a}} 
+double {\bfseries haversine} (list$<$ double $>$ \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{Stops\+Long}}, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{Stops\+Lat}}, int src, int dest)
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{Stops\+Code}} ()
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{Stops\+Name}} ()
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a5405d00b18cde827df7459412ff80d52}{Lines\+Name}} ()
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}{Lines\+Code}} ()
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a99532f548583c0b98bf5df4dfab35466}{Stops\+Zone}} ()
+\item 
+string \mbox{\hyperlink{class_graph_create_aa24949feeb69f4e61cea55e01deeee3d}{Node\+To\+List\+Index}} (int node\+Number, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{Stops\+Code}})
+\begin{DoxyCompactList}\small\item\em atribui index aos nodes \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_create_a699bcaf0830356aad724271ec68477a8}{haversine2}} (double lat1, double lon1, double lat2, double lon2)
+\begin{DoxyCompactList}\small\item\em retorna distancia atraves da latitude e longitude de 2 stops \end{DoxyCompactList}\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a532abfece667c21dbec9c0da0f6f2b2a}{Coordinates\+Near\+By\+Distance}} (double distance, double lat, double longi, list$<$ double $>$ Lats, list$<$ double $>$ Longis, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{Stops\+Name}})
+\item 
+\mbox{\Hypertarget{class_graph_create_ab13485c6b5d9cd9c81ed0f44daa8f701}\label{class_graph_create_ab13485c6b5d9cd9c81ed0f44daa8f701}} 
+list$<$ string $>$ {\bfseries zones\+Passed} (list$<$ string $>$ stops\+Passed, list$<$ string $>$ stops\+Zone, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{Stops\+Name}})
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7e5c8f4cd13a5d694edc7fc874ac8b31}{Coordinates\+Near\+By\+Number\+Of\+Stops}} (int num\+Stops, double lat, double longi, list$<$ double $>$ Lats, list$<$ double $>$ Longis, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{Stops\+Name}})
+\item 
+list$<$ double $>$ \mbox{\hyperlink{class_graph_create_a62c4f2f82d49d9e4f486dba94fe2cfcc}{Stop\+Code\+Or\+Name\+To\+Coords}} (list$<$ string $>$ Stop\+Names, list$<$ string $>$ Stop\+Codes, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{Stops\+Lat}}, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{Stops\+Long}})
+\item 
+\mbox{\Hypertarget{class_graph_create_a2dc87cce600a6210145ff2f1b4e7ec21}\label{class_graph_create_a2dc87cce600a6210145ff2f1b4e7ec21}} 
+list$<$ double $>$ {\bfseries Node\+To\+List\+Index\+Double} (int node\+Number, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}{Stops\+Lat}}, list$<$ double $>$ \mbox{\hyperlink{class_graph_create_ab99f673b327cadf02b62e991a55936ca}{Stops\+Long}})
+\item 
+list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a288087afe3d1aa154b28fdd635cf564a}{Stop\+Check}} (string stop, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}{Stops\+Code}}, list$<$ string $>$ \mbox{\hyperlink{class_graph_create_a7812b77aa7ba24b424634708a1327793}{Stops\+Name}})
+\begin{DoxyCompactList}\small\item\em verifica se a stop existe e retorna a Time Complexity\+: O(\+N) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_create_a532abfece667c21dbec9c0da0f6f2b2a}\label{class_graph_create_a532abfece667c21dbec9c0da0f6f2b2a}} 
+\index{GraphCreate@{GraphCreate}!CoordinatesNearByDistance@{CoordinatesNearByDistance}}
+\index{CoordinatesNearByDistance@{CoordinatesNearByDistance}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{CoordinatesNearByDistance()}{CoordinatesNearByDistance()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Coordinates\+Near\+By\+Distance (\begin{DoxyParamCaption}\item[{double}]{distance,  }\item[{double}]{lat,  }\item[{double}]{longi,  }\item[{list$<$ double $>$}]{Lats,  }\item[{list$<$ double $>$}]{Longis,  }\item[{list$<$ string $>$}]{Stops\+Name }\end{DoxyParamCaption})}
+
+Coordinates\+Near\+By\+Distance Time Complexity\+: O(\+N) 
+\begin{DoxyParams}{Parameters}
+{\em distance} & \\
+\hline
+{\em lat} & \\
+\hline
+{\em longi} & \\
+\hline
+{\em Lats} & \\
+\hline
+{\em Longis} & \\
+\hline
+{\em Stops\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lista de coordenadas abaixo de uma certa distancia 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a7e5c8f4cd13a5d694edc7fc874ac8b31}\label{class_graph_create_a7e5c8f4cd13a5d694edc7fc874ac8b31}} 
+\index{GraphCreate@{GraphCreate}!CoordinatesNearByNumberOfStops@{CoordinatesNearByNumberOfStops}}
+\index{CoordinatesNearByNumberOfStops@{CoordinatesNearByNumberOfStops}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{CoordinatesNearByNumberOfStops()}{CoordinatesNearByNumberOfStops()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Coordinates\+Near\+By\+Number\+Of\+Stops (\begin{DoxyParamCaption}\item[{int}]{num\+Stops,  }\item[{double}]{lat,  }\item[{double}]{longi,  }\item[{list$<$ double $>$}]{Lats,  }\item[{list$<$ double $>$}]{Longis,  }\item[{list$<$ string $>$}]{Stops\+Name }\end{DoxyParamCaption})}
+
+Coordinates\+Near\+By\+Number\+Of\+Stops Time Complexity\+: O(\+N) 
+\begin{DoxyParams}{Parameters}
+{\em num\+Stops} & \\
+\hline
+{\em lat} & \\
+\hline
+{\em longi} & \\
+\hline
+{\em Lats} & \\
+\hline
+{\em Longis} & \\
+\hline
+{\em Stops\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lista de coordenadas a baixo de um número de stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a08e76d2b40da86e0be95bceb5eb71f4b}\label{class_graph_create_a08e76d2b40da86e0be95bceb5eb71f4b}} 
+\index{GraphCreate@{GraphCreate}!CreateGraph@{CreateGraph}}
+\index{CreateGraph@{CreateGraph}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{CreateGraph()}{CreateGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+Create\+::\+Create\+Graph (\begin{DoxyParamCaption}\item[{list$<$ string $>$}]{lines,  }\item[{list$<$ string $>$}]{Lines\+Code,  }\item[{map$<$ string, int $>$}]{Stops\+To\+Int,  }\item[{list$<$ double $>$}]{Stops\+Lat,  }\item[{list$<$ double $>$}]{Stops\+Long }\end{DoxyParamCaption})}
+
+Construtor Time Complexity = N$^\wedge$2 
+\begin{DoxyParams}{Parameters}
+{\em lines} & \\
+\hline
+{\em Lines\+Code} & \\
+\hline
+{\em Stops\+To\+Int} & \\
+\hline
+{\em Stops\+Lat} & \\
+\hline
+{\em Stops\+Long} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+grafo 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a699bcaf0830356aad724271ec68477a8}\label{class_graph_create_a699bcaf0830356aad724271ec68477a8}} 
+\index{GraphCreate@{GraphCreate}!haversine2@{haversine2}}
+\index{haversine2@{haversine2}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{haversine2()}{haversine2()}}
+{\footnotesize\ttfamily double Graph\+Create\+::haversine2 (\begin{DoxyParamCaption}\item[{double}]{lat1,  }\item[{double}]{lon1,  }\item[{double}]{lat2,  }\item[{double}]{lon2 }\end{DoxyParamCaption})}
+
+
+
+retorna distancia atraves da latitude e longitude de 2 stops 
+
+haversine2 
+\begin{DoxyParams}{Parameters}
+{\em lat1} & \\
+\hline
+{\em lon1} & \\
+\hline
+{\em lat2} & \\
+\hline
+{\em lon2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distancia entre 2 stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}\label{class_graph_create_a8c19ed91a81dbd491dc66fb3c0b4be38}} 
+\index{GraphCreate@{GraphCreate}!LinesCode@{LinesCode}}
+\index{LinesCode@{LinesCode}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{LinesCode()}{LinesCode()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Lines\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Lines\+Code \begin{DoxyReturn}{Returns}
+codigos de linhas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a5405d00b18cde827df7459412ff80d52}\label{class_graph_create_a5405d00b18cde827df7459412ff80d52}} 
+\index{GraphCreate@{GraphCreate}!LinesName@{LinesName}}
+\index{LinesName@{LinesName}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{LinesName()}{LinesName()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Lines\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Lines\+Name \begin{DoxyReturn}{Returns}
+lista de nomes das linhas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_aa24949feeb69f4e61cea55e01deeee3d}\label{class_graph_create_aa24949feeb69f4e61cea55e01deeee3d}} 
+\index{GraphCreate@{GraphCreate}!NodeToListIndex@{NodeToListIndex}}
+\index{NodeToListIndex@{NodeToListIndex}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{NodeToListIndex()}{NodeToListIndex()}}
+{\footnotesize\ttfamily string Graph\+Create\+::\+Node\+To\+List\+Index (\begin{DoxyParamCaption}\item[{int}]{node\+Number,  }\item[{list$<$ string $>$}]{Stops\+Code }\end{DoxyParamCaption})}
+
+
+
+atribui index aos nodes 
+
+Node\+To\+List\+Index 
+\begin{DoxyParams}{Parameters}
+{\em node\+Number} & \\
+\hline
+{\em Stops\+Code} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a0a1eafaa41a06ed583c71c5c8b7fd798}\label{class_graph_create_a0a1eafaa41a06ed583c71c5c8b7fd798}} 
+\index{GraphCreate@{GraphCreate}!readLines@{readLines}}
+\index{readLines@{readLines}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{readLines()}{readLines()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::read\+Lines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Leitura de linhas \begin{DoxyReturn}{Returns}
+lista de linhas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a72fe8a5125a0e606f33046a1d883219e}\label{class_graph_create_a72fe8a5125a0e606f33046a1d883219e}} 
+\index{GraphCreate@{GraphCreate}!readStopsinLine@{readStopsinLine}}
+\index{readStopsinLine@{readStopsinLine}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{readStopsinLine()}{readStopsinLine()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::read\+Stopsin\+Line (\begin{DoxyParamCaption}\item[{list$<$ string $>$}]{lines,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+Leitura de stops correspondentes a linhas 
+\begin{DoxyParams}{Parameters}
+{\em lines} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lista de stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a288087afe3d1aa154b28fdd635cf564a}\label{class_graph_create_a288087afe3d1aa154b28fdd635cf564a}} 
+\index{GraphCreate@{GraphCreate}!StopCheck@{StopCheck}}
+\index{StopCheck@{StopCheck}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopCheck()}{StopCheck()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Stop\+Check (\begin{DoxyParamCaption}\item[{string}]{stop,  }\item[{list$<$ string $>$}]{Stops\+Code,  }\item[{list$<$ string $>$}]{Stops\+Name }\end{DoxyParamCaption})}
+
+
+
+verifica se a stop existe e retorna a Time Complexity\+: O(\+N) 
+
+Stop\+Check 
+\begin{DoxyParams}{Parameters}
+{\em stop} & \\
+\hline
+{\em Stops\+Code} & \\
+\hline
+{\em Stops\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lista com apenas umas stop 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a62c4f2f82d49d9e4f486dba94fe2cfcc}\label{class_graph_create_a62c4f2f82d49d9e4f486dba94fe2cfcc}} 
+\index{GraphCreate@{GraphCreate}!StopCodeOrNameToCoords@{StopCodeOrNameToCoords}}
+\index{StopCodeOrNameToCoords@{StopCodeOrNameToCoords}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopCodeOrNameToCoords()}{StopCodeOrNameToCoords()}}
+{\footnotesize\ttfamily list$<$ double $>$ Graph\+Create\+::\+Stop\+Code\+Or\+Name\+To\+Coords (\begin{DoxyParamCaption}\item[{list$<$ string $>$}]{Stop\+Names,  }\item[{list$<$ string $>$}]{Stop\+Codes,  }\item[{list$<$ double $>$}]{Stops\+Lat,  }\item[{list$<$ double $>$}]{Stops\+Long }\end{DoxyParamCaption})}
+
+Stop\+Code\+Or\+Name\+To\+Coords Time Complexity\+: O(\+N) 
+\begin{DoxyParams}{Parameters}
+{\em Stop\+Names} & \\
+\hline
+{\em Stop\+Codes} & \\
+\hline
+{\em Stops\+Lat} & \\
+\hline
+{\em Stops\+Long} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lista de coordenadas correspondentes a nome ou codigo de stop 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}\label{class_graph_create_a15290467f6893f768eb92c1f8a7df6aa}} 
+\index{GraphCreate@{GraphCreate}!StopsCode@{StopsCode}}
+\index{StopsCode@{StopsCode}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsCode()}{StopsCode()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Stops\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+Code \begin{DoxyReturn}{Returns}
+lista de codigos de stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}\label{class_graph_create_af4ba29b86e216736c0ff4d4322aaed6f}} 
+\index{GraphCreate@{GraphCreate}!StopsLat@{StopsLat}}
+\index{StopsLat@{StopsLat}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsLat()}{StopsLat()}}
+{\footnotesize\ttfamily list$<$ double $>$ Graph\+Create\+::\+Stops\+Lat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+Lat \begin{DoxyReturn}{Returns}
+lista de latitudes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_ab99f673b327cadf02b62e991a55936ca}\label{class_graph_create_ab99f673b327cadf02b62e991a55936ca}} 
+\index{GraphCreate@{GraphCreate}!StopsLong@{StopsLong}}
+\index{StopsLong@{StopsLong}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsLong()}{StopsLong()}}
+{\footnotesize\ttfamily list$<$ double $>$ Graph\+Create\+::\+Stops\+Long (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+Long \begin{DoxyReturn}{Returns}
+lista de longitudes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a7812b77aa7ba24b424634708a1327793}\label{class_graph_create_a7812b77aa7ba24b424634708a1327793}} 
+\index{GraphCreate@{GraphCreate}!StopsName@{StopsName}}
+\index{StopsName@{StopsName}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsName()}{StopsName()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Stops\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+Name \begin{DoxyReturn}{Returns}
+lista de nome de stops 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_abcd6121a31dea8bf07f610aaa75af4a3}\label{class_graph_create_abcd6121a31dea8bf07f610aaa75af4a3}} 
+\index{GraphCreate@{GraphCreate}!StopsToMap@{StopsToMap}}
+\index{StopsToMap@{StopsToMap}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsToMap()}{StopsToMap()}}
+{\footnotesize\ttfamily map$<$ string, int $>$ Graph\+Create\+::\+Stops\+To\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+To\+Map \begin{DoxyReturn}{Returns}
+mapa com stops e index 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_create_a99532f548583c0b98bf5df4dfab35466}\label{class_graph_create_a99532f548583c0b98bf5df4dfab35466}} 
+\index{GraphCreate@{GraphCreate}!StopsZone@{StopsZone}}
+\index{StopsZone@{StopsZone}!GraphCreate@{GraphCreate}}
+\doxysubsubsection{\texorpdfstring{StopsZone()}{StopsZone()}}
+{\footnotesize\ttfamily list$<$ string $>$ Graph\+Create\+::\+Stops\+Zone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops\+Zone \begin{DoxyReturn}{Returns}
+zonas 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/andre/\+CLion\+Projects/\+Projeto2\+AED/Graph\+Create.\+h\item 
+C\+:/\+Users/andre/\+CLion\+Projects/\+Projeto2\+AED/Graph\+Create.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{graph_8h_source}{}\doxysection{graph.\+h}
+\label{graph_8h_source}\index{C:/Users/andre/CLionProjects/Projeto2AED/graph.h@{C:/Users/andre/CLionProjects/Projeto2AED/graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Rui Andrade (FEUP)}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef PROJETO2AED\_GRAPH\_H}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define PROJETO2AED\_GRAPH\_H}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}minHeap.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}disjointSets.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{15     \textcolor{keyword}{struct }Edge \{}
+\DoxyCodeLine{16         \textcolor{keywordtype}{int} dest;   \textcolor{comment}{// Destination node}}
+\DoxyCodeLine{17         \textcolor{keywordtype}{double} weight; \textcolor{comment}{// An integer weight}}
+\DoxyCodeLine{18         \textcolor{keywordtype}{string} lineCode;}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{struct }Node \{}
+\DoxyCodeLine{22         list<Edge> adj; \textcolor{comment}{// The list of outgoing edges (to adjacent nodes)}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{double} distance;}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} pred;}
+\DoxyCodeLine{25         \textcolor{keywordtype}{bool} visited;}
+\DoxyCodeLine{26     \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{int} n;              \textcolor{comment}{// Graph size (vertices are numbered from 1 to n)}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} hasDir;        \textcolor{comment}{// false: undirect; true: directed}}
+\DoxyCodeLine{30     vector<Node> nodes; \textcolor{comment}{// The list of nodes being represented}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{33     \textcolor{comment}{// Constructor: nr nodes and direction (default: undirected)}}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_graph}{Graph}}(\textcolor{keywordtype}{int} nodes, \textcolor{keywordtype}{bool} dir);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{comment}{// Add edge from source to destination with a certain weight}}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} addEdge(\textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest, \textcolor{keywordtype}{string} lineCode, \textcolor{keywordtype}{double} weight);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{double} dijkstra\_distance(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b,list<string> StopZones);}
+\DoxyCodeLine{40     list<int> \mbox{\hyperlink{class_graph_a318d359c632d8113e2e68f907628c48c}{dijkstra\_path}}(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{int} type,list<string> StopZones);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0a75a704f5bebdc893cc94e04b78d410}{bfsDist}}(\textcolor{keywordtype}{int} v);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} distance(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0d4f8451b7b04fa3018035f785481af6}{dijkstra}}(\textcolor{keywordtype}{int} s, \textcolor{keywordtype}{int} type, list<string> StopZones);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     list<int> dijkstra\_path\_walking(\textcolor{keywordtype}{int} a, \textcolor{keywordtype}{int} b, \textcolor{keywordtype}{double} d, list<string> StopZones);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_graph_a93316af396039139541cff44a5948e44}{checkPreviousLineCode}}(\textcolor{keywordtype}{int} u, \textcolor{keywordtype}{int} s);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a0994ad363ea43553f3095f0f6fc8bca3}{checkZoneChange}}(\textcolor{keywordtype}{int} u, \textcolor{keywordtype}{int} v, list<string> StopZones);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{double} haversine3(list<double> StopsLong, list<double> StopsLat, \textcolor{keywordtype}{int} src, \textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

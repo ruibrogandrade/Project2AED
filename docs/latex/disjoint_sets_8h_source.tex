@@ -1,0 +1,51 @@
+\hypertarget{disjoint_sets_8h_source}{}\doxysection{disjoint\+Sets.\+h}
+\label{disjoint_sets_8h_source}\index{C:/Users/andre/CLionProjects/Projeto2AED/disjointSets.h@{C:/Users/andre/CLionProjects/Projeto2AED/disjointSets.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// Rui Andrade (FEUP)}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef PROJETO2AED\_DISJOINTSETS\_H}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define PROJETO2AED\_DISJOINTSETS\_H}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_disjoint_sets}{DisjointSets}} \{}
+\DoxyCodeLine{10     \textcolor{keyword}{struct }Node \{}
+\DoxyCodeLine{11         T parent;}
+\DoxyCodeLine{12         \textcolor{keywordtype}{int} myrank; \textcolor{comment}{// to use on union by rank}}
+\DoxyCodeLine{13     \};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     unordered\_map<T, Node> a;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} makeSet(\textcolor{keyword}{const} T\& x);            \textcolor{comment}{// Create a set with a single element x}}
+\DoxyCodeLine{19     T find(\textcolor{keyword}{const} T\& x);                  \textcolor{comment}{// Find the representative of the set of element x}}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} unite(\textcolor{keyword}{const} T\& x, \textcolor{keyword}{const} T\& y);  \textcolor{comment}{// Merge the sets of elements x and y}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{comment}{// Create a set with a single element x}}
+\DoxyCodeLine{25 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_disjoint_sets}{DisjointSets<T>::makeSet}}(\textcolor{keyword}{const} T\& x) \{}
+\DoxyCodeLine{27     a[x].parent = x;}
+\DoxyCodeLine{28 \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// Find the representative of the set of element x}}
+\DoxyCodeLine{31 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{32 T \mbox{\hyperlink{class_disjoint_sets}{DisjointSets<T>::find}}(\textcolor{keyword}{const} T\& x) \{}
+\DoxyCodeLine{33     \textcolor{keywordflow}{if} (a[x].parent == x) \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{34     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} find(a[x].parent);}
+\DoxyCodeLine{35 \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{comment}{// Merge the sets of elements x and y}}
+\DoxyCodeLine{38 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{39 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_disjoint_sets}{DisjointSets<T>::unite}}(\textcolor{keyword}{const} T\& x, \textcolor{keyword}{const} T\& y) \{}
+\DoxyCodeLine{40     T xRoot = find(x);}
+\DoxyCodeLine{41     T yRoot = find(y);}
+\DoxyCodeLine{42     a[yRoot].parent = xRoot;}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
